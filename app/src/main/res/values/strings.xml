@@ -9,4 +9,16 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string-array name="rooms_name">
+        <item>bleu</item>
+        <item>jaune</item>
+        <item>rouge</item>
+        <item>verte</item>
+        <item>blanche</item>
+        <item>noire</item>
+        <item>rose</item>
+    </string-array>
+
+
 </resources>
