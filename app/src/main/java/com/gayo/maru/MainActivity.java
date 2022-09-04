@@ -2,6 +2,7 @@ package com.gayo.maru;
 
 import android.os.Bundle;
 
+import com.gayo.maru.model.meetModel;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,10 +19,20 @@ import com.gayo.maru.databinding.ActivityMainBinding;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+
+
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+
+    ArrayList<meetModel> mMeetModelArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +54,63 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        for (int i = 0; i < 5; i++) {SetUpMeet();}
     }
+
+    public void SetUpMeet(){
+        int listSize = GenerateRandGuestListSize();
+        Date date=new java.util.Date();
+        String[] meetRoomsNames = getResources().getStringArray(R.array.rooms_name);
+        String[] meetLeaderNames = getResources().getStringArray(R.array.meet_leaders);
+
+
+            mMeetModelArrayList.add(new meetModel(
+                    meetLeaderNames[ThreadLocalRandom.current().nextInt(0, getResources().getStringArray(R.array.meet_leaders).length)],
+                    meetRoomsNames[ThreadLocalRandom.current().nextInt(0, getResources().getStringArray(R.array.rooms_name).length)],
+                    SetMailsList(listSize),
+                    date));
+
+
+            System.out.println("List Size  = " + listSize);
+            SetMailsList(listSize);
+    }
+
+
+    /** Set a mail list with Int @param */
+    public String[] SetMailsList(int guests){
+        String[] fullMeetMails = getResources().getStringArray(R.array.users_mails);
+        List<String> outMeetMails = new ArrayList<>(Arrays.asList());
+        for (int i = 0; i < guests; i++) {
+            int randomNum = ThreadLocalRandom.current().nextInt(0, getResources().getStringArray(R.array.users_mails).length);
+            if (outMeetMails.contains(fullMeetMails[randomNum])){
+                guests++;
+            }else{
+                outMeetMails.add(fullMeetMails[randomNum]);
+            }
+        }
+        outMeetMails.toArray();
+        String[] outArray = outMeetMails.toArray(new String[outMeetMails.size()]);
+        PrintStringArray(outArray);
+        return outArray;
+    }
+
+    /** To print a String Array. */
+    public void PrintStringArray(String[] stringArr){
+        for (int i = 0; i < stringArr.length; i++) {
+            System.out.println("#### ITEM [" +i+ "] : " + stringArr[i]);
+        }
+    }
+
+    public int GenerateRandGuestListSize(){
+        int randNum = ThreadLocalRandom.current().nextInt(0, getResources().getStringArray(R.array.users_mails).length);
+        if (randNum <= 1){
+            randNum = 2;
+        } else if(randNum >= getResources().getStringArray(R.array.users_mails).length + 1) {
+            randNum = getResources().getStringArray(R.array.users_mails).length;
+        }
+        return randNum;
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -51,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
