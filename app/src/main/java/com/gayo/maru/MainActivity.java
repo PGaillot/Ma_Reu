@@ -13,12 +13,15 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.gayo.maru.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -54,12 +57,17 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        RecyclerView recyclerView = findViewById(R.id.main_rv_meets);
         for (int i = 0; i < 5; i++) {SetUpMeet();}
+        MainMeetsRVAdapter adapter = new MainMeetsRVAdapter(this, mMeetModelArrayList);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     public void SetUpMeet(){
         int listSize = GenerateRandGuestListSize();
-        Date date=new java.util.Date();
+        Date date = new Date(System.currentTimeMillis());
         String[] meetRoomsNames = getResources().getStringArray(R.array.rooms_name);
         String[] meetLeaderNames = getResources().getStringArray(R.array.meet_leaders);
 
