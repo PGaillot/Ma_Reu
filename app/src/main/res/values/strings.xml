@@ -20,5 +20,27 @@
         <item>rose</item>
     </string-array>
 
+    <string-array name="users_mails">
+        <item>pr.gaillot@gmail.com</item>
+        <item>leacoulomb@gmail.com</item>
+        <item>kevin1000@gmail.com</item>
+        <item>timSalme@gmail.com</item>
+        <item>benedego@gmail.com</item>
+        <item>muzinsky.pauline@gmail.com</item>
+        <item>dubois.julien@gmail.com</item>
+        <item>mathias.ctn@gmail.com</item>
+        <item>ccousin@gmail.com</item>
+    </string-array>
+
+    <string-array name="meet_leaders">
+        <item>Pierre</item>
+        <item>Tim</item>
+        <item>Kevin</item>
+        <item>Léa</item>
+        <item>Julien</item>
+        <item>Béné</item>
+        <item>Damien</item>
+        <item>Clémence</item>
+    </string-array>
 
 </resources>

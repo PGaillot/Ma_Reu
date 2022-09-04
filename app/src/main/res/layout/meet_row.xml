@@ -31,13 +31,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:paddingBottom="4dp"
-        android:text="Réunion A - 14h00 - pr.gailot@gmsdfsdfsdfsdail.com"
-        android:textSize="16dp"
+        android:text="Réunion A - 14h00 - Pierre"
+        android:textSize="18dp"
         android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintTop_toTopOf="parent"
-        android:ellipsize="end"
         android:ems="14"
         android:maxLines="1"/>
 
