@@ -3,11 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Code/MaRu/app/src/main/res/layout/activity_detail_meet.xml" value="0.14074074074074075" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout/activity_new_meet.xml" value="0.33" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout/content_main.xml" value="0.25" />
+        <entry key="..\:/Code/MaRu/app/src/main/res/layout/fragment_calendar.xml" value="0.18177083333333333" />
+        <entry key="..\:/Code/MaRu/app/src/main/res/layout/fragment_detail.xml" value="0.29635416666666664" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout/fragment_first.xml" value="0.18802083333333333" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout/fragment_second.xml" value="0.18802083333333333" />
+        <entry key="..\:/Code/MaRu/app/src/main/res/layout/guess_detail_entry.xml" value="0.365625" />
+        <entry key="..\:/Code/MaRu/app/src/main/res/layout/mail_chip_entry.xml" value="0.2557291666666667" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout/meet_row.xml" value="0.5" />
       </map>
     </option>

@@ -1,9 +1,9 @@
 package com.gayo.maru;
 
+import android.content.Intent;
 import android.os.Bundle;
 
-import com.gayo.maru.model.meetModel;
-import com.google.android.material.snackbar.Snackbar;
+import com.gayo.maru.model.MeetModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,7 +21,6 @@ import com.gayo.maru.databinding.ActivityMainBinding;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
-    ArrayList<meetModel> mMeetModelArrayList = new ArrayList<>();
+    ArrayList<MeetModel> mMeetModelArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +52,7 @@ public class MainActivity extends AppCompatActivity {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                OpenAddNewMeetActivity();
             }
         });
 
@@ -63,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         MainMeetsRVAdapter adapter = new MainMeetsRVAdapter(this, mMeetModelArrayList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     public void SetUpMeet(){
@@ -72,11 +71,13 @@ public class MainActivity extends AppCompatActivity {
         String[] meetLeaderNames = getResources().getStringArray(R.array.meet_leaders);
 
 
-            mMeetModelArrayList.add(new meetModel(
+            mMeetModelArrayList.add(new MeetModel(
                     meetLeaderNames[ThreadLocalRandom.current().nextInt(0, getResources().getStringArray(R.array.meet_leaders).length)],
                     meetRoomsNames[ThreadLocalRandom.current().nextInt(0, getResources().getStringArray(R.array.rooms_name).length)],
                     SetMailsList(listSize),
-                    date));
+                    date,
+                    1,
+                    "Le sujet de la réunion"));
 
 
             System.out.println("List Size  = " + listSize);
@@ -148,5 +149,10 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public void OpenAddNewMeetActivity(){
+        Intent intent = new Intent(this, NewMeetActivity.class);
+        startActivity(intent);
     }
 }

@@ -1,6 +1,8 @@
 package com.gayo.maru;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,17 +11,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gayo.maru.model.meetModel;
+import com.gayo.maru.model.MeetModel;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-public class MainMeetsRVAdapter extends RecyclerView.Adapter<MainMeetsRVAdapter.MyViewHolder> {
+public class MainMeetsRVAdapter extends RecyclerView.Adapter<MainMeetsRVAdapter.MyViewHolder> implements Serializable {
 
-    ArrayList<meetModel> meetsArrayList;
+    ArrayList<MeetModel> meetsArrayList;
     Context mContext;
 
-    public MainMeetsRVAdapter(Context context, ArrayList<meetModel> meetsArrayList){
+    public MainMeetsRVAdapter(Context context, ArrayList<MeetModel> meetsArrayList){
         this.mContext = context;
         this.meetsArrayList = meetsArrayList;
     }
@@ -34,11 +37,25 @@ public class MainMeetsRVAdapter extends RecyclerView.Adapter<MainMeetsRVAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         SimpleDateFormat hourDateFormatter = new SimpleDateFormat("HH");
         SimpleDateFormat minDateFormatter = new SimpleDateFormat("mm");
-        holder.leaderName.setText(meetsArrayList.get(position).getRoom() + " - " + hourDateFormatter.format(meetsArrayList.get(position).getDate())+"h"+ minDateFormatter.format(meetsArrayList.get(position).getDate()) + " - " +meetsArrayList.get(position).getMeetLeader() );
+        holder.leaderName.setText("Salle " +  meetsArrayList.get(position).getRoom()+ " - " + hourDateFormatter.format(meetsArrayList.get(position).getDate())+"h"+ minDateFormatter.format(meetsArrayList.get(position).getDate()) + " - " +meetsArrayList.get(position).getMeetLeader() );
         holder.mails.setText(String.join(", ", meetsArrayList.get(position).getMails()));
+
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent detailActivityIntent = new Intent(view.getContext(), DetailMeetActivity.class);
+                MeetModel currentMeet = meetsArrayList.get(position);
+                detailActivityIntent.putExtra("currentMeet", currentMeet);
+
+
+             view.getContext().startActivity(detailActivityIntent);
+            }
+        });
 
     }
 
