@@ -15,7 +15,8 @@
         tools:targetApi="31">
         <activity
             android:name=".DetailMeetActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".NewMeetActivity"
             android:exported="false"
