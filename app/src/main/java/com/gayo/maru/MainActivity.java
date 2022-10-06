@@ -3,12 +3,15 @@ package com.gayo.maru;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.gayo.maru.di.DI;
 import com.gayo.maru.model.MeetModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -18,26 +21,29 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gayo.maru.databinding.ActivityMainBinding;
 
-import android.view.Menu;
-import android.view.MenuItem;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+import event.DeleteMeetEvent;
+import service.MeetApiService;
 
 public class MainActivity extends AppCompatActivity {
 
+    private MeetApiService mMeetApiService;
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+    private RecyclerView mRecyclerView;
+    private int mMeetCount;
+    private MainInfoFragment mainInfoFragment;
 
     ArrayList<MeetModel> mMeetModelArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mMeetApiService = DI.getMeetApiService();
+        mMeetModelArrayList = (ArrayList<MeetModel>) mMeetApiService.getMeets();
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -54,92 +60,50 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        RecyclerView recyclerView = findViewById(R.id.main_rv_meets);
-        for (int i = 0; i < 5; i++) {SetUpMeet();}
+        mRecyclerView = findViewById(R.id.main_rv_meets);
         MainMeetsRVAdapter adapter = new MainMeetsRVAdapter(this, mMeetModelArrayList);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        mRecyclerView.setAdapter(adapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ShowAndConfigureInfoFragment();
     }
 
-    public void SetUpMeet(){
-        int listSize = GenerateRandGuestListSize();
-        Date date = new Date(System.currentTimeMillis());
-        String[] meetRoomsNames = getResources().getStringArray(R.array.rooms_name);
-        String[] meetLeaderNames = getResources().getStringArray(R.array.meet_leaders);
-
-
-            mMeetModelArrayList.add(new MeetModel(
-                    meetLeaderNames[ThreadLocalRandom.current().nextInt(0, getResources().getStringArray(R.array.meet_leaders).length)],
-                    meetRoomsNames[ThreadLocalRandom.current().nextInt(0, getResources().getStringArray(R.array.rooms_name).length)],
-                    SetMailsList(listSize),
-                    date,
-                    1,
-                    "Le sujet de la réunion"));
-
-
-            System.out.println("List Size  = " + listSize);
-            SetMailsList(listSize);
-    }
-
-
-    /** Set a mail list with Int @param */
-    public String[] SetMailsList(int guests){
-        String[] fullMeetMails = getResources().getStringArray(R.array.users_mails);
-        List<String> outMeetMails = new ArrayList<>(Arrays.asList());
-        for (int i = 0; i < guests; i++) {
-            int randomNum = ThreadLocalRandom.current().nextInt(0, getResources().getStringArray(R.array.users_mails).length);
-            if (outMeetMails.contains(fullMeetMails[randomNum])){
-                guests++;
-            }else{
-                outMeetMails.add(fullMeetMails[randomNum]);
-            }
-        }
-        outMeetMails.toArray();
-        String[] outArray = outMeetMails.toArray(new String[outMeetMails.size()]);
-        PrintStringArray(outArray);
-        return outArray;
-    }
-
-    /** To print a String Array. */
-    public void PrintStringArray(String[] stringArr){
-        for (int i = 0; i < stringArr.length; i++) {
-            System.out.println("#### ITEM [" +i+ "] : " + stringArr[i]);
-        }
-    }
-
-    public int GenerateRandGuestListSize(){
-        int randNum = ThreadLocalRandom.current().nextInt(0, getResources().getStringArray(R.array.users_mails).length);
-        if (randNum <= 1){
-            randNum = 2;
-        } else if(randNum >= getResources().getStringArray(R.array.users_mails).length + 1) {
-            randNum = getResources().getStringArray(R.array.users_mails).length;
-        }
-        return randNum;
+    /**
+     * Init the List of Meets
+     */
+    private void initList() {
+        mMeetModelArrayList = (ArrayList<MeetModel>) mMeetApiService.getMeets();
+        mRecyclerView.setAdapter(new MainMeetsRVAdapter(this, mMeetModelArrayList));
     }
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    public void onResume() {
+        super.onResume();
+        initList();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    /**
+     * Fired if the user clicks on a delete button
+     *
+     * @param event
+     */
+    @Subscribe
+    public void onDeleteMeet(DeleteMeetEvent event) {
+        mMeetApiService.deleteMeet(event.meet);
+        initList();
+        System.out.println(mMeetModelArrayList.size());
     }
 
     @Override
@@ -149,8 +113,31 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    public void OpenAddNewMeetActivity(){
+    public void OpenAddNewMeetActivity() {
         Intent intent = new Intent(this, NewMeetActivity.class);
         startActivity(intent);
+    }
+
+    public void OpenInfoFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        mMeetCount = mMeetModelArrayList.size();
+        Bundle meetCountBundle = new Bundle();
+        meetCountBundle.putInt("mainActMeetCount", mMeetCount);
+        fragment.setArguments(meetCountBundle);
+        System.out.println("################################# => " + meetCountBundle);
+        fragmentTransaction.replace(R.id.MainInfoFrameFragment, fragment).commit();
+    }
+
+
+    private void ShowAndConfigureInfoFragment() {
+        mainInfoFragment = (MainInfoFragment) getSupportFragmentManager().findFragmentById(R.id.MainInfoFrameFragment);
+
+        Boolean test1 = mainInfoFragment == null;
+        Boolean test2 = findViewById(R.id.MainInfoFrameFragment) != null;
+        if (test1 && test2) {
+            mainInfoFragment = new MainInfoFragment();
+            System.out.println("AFFICHE INFOS");
+            OpenInfoFragment(mainInfoFragment);
+        }
     }
 }

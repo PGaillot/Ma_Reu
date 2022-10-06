@@ -22,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gayo.maru.di.DI;
 import com.gayo.maru.model.MeetModel;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -31,6 +32,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import service.MeetApiService;
 
 
 public class NewMeetFragment extends Fragment {
@@ -46,7 +49,6 @@ public class NewMeetFragment extends Fragment {
 
     String[] roomsArray;
     Button mValidateButton;
-    MeetModel mMeet;
     String mLeaderName;
     Date mMeetDate, mTodayDate;
     List<String> mMeetMails = new ArrayList<>();
@@ -54,8 +56,7 @@ public class NewMeetFragment extends Fragment {
     int mMeetDuration;
     String mTopic;
     Fragment calendarFragment;
-
-
+    MeetApiService mMeetApiService;
 
 
     @Override
@@ -217,13 +218,12 @@ public class NewMeetFragment extends Fragment {
     }
 
 
-
-
     /**
      Set all Rooms from string.xml to the RoomSpinner
      */
     public void SetRoomsSpinner(){
-        roomsArray = getResources().getStringArray(R.array.rooms_name);
+        mMeetApiService = DI.getMeetApiService();
+        roomsArray = mMeetApiService.getRooms().toArray(new String[0]);
         List<String> roomsStringList = Arrays.asList(roomsArray);
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(
                 getActivity(), android.R.layout.simple_spinner_item, roomsStringList

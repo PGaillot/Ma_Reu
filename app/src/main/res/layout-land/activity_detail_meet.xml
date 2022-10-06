@@ -5,12 +5,4 @@
     android:id="@+id/detail_act_constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailMeetActivity">
-
-    <FrameLayout
-        android:id="@+id/detail_frag_frame_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </FrameLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    tools:context=".DetailMeetActivity"/>

@@ -3,6 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/activity_detail_meet.xml" value="0.1" />
+        <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/activity_main.xml" value="0.25" />
+        <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/activity_new_meet.xml" value="0.15416666666666667" />
+        <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/content_main.xml" value="0.15416666666666667" />
+        <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/fragment_calendar.xml" value="0.15416666666666667" />
+        <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/fragment_detail.xml" value="0.15416666666666667" />
+        <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/fragment_first.xml" value="0.15416666666666667" />
+        <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/fragment_main_info.xml" value="0.2009009009009009" />
+        <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/fragment_new_meet.xml" value="0.15416666666666667" />
+        <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/guess_detail_entry.xml" value="0.15416666666666667" />
+        <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/mail_chip_entry.xml" value="0.15416666666666667" />
+        <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/meet_row.xml" value="0.72" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout/activity_detail_meet.xml" value="0.14074074074074075" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout/activity_new_meet.xml" value="0.33" />
@@ -10,7 +22,8 @@
         <entry key="..\:/Code/MaRu/app/src/main/res/layout/fragment_calendar.xml" value="0.18177083333333333" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout/fragment_detail.xml" value="0.29635416666666664" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout/fragment_first.xml" value="0.18802083333333333" />
-        <entry key="..\:/Code/MaRu/app/src/main/res/layout/fragment_new_meet.xml" value="0.21510416666666668" />
+        <entry key="..\:/Code/MaRu/app/src/main/res/layout/fragment_main_info.xml" value="0.2740740740740741" />
+        <entry key="..\:/Code/MaRu/app/src/main/res/layout/fragment_new_meet.xml" value="0.5" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout/fragment_second.xml" value="0.18802083333333333" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout/guess_detail_entry.xml" value="0.365625" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout/mail_chip_entry.xml" value="0.2557291666666667" />

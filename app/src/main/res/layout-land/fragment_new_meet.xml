@@ -18,9 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/what"
-            android:textStyle="bold"
-            />
+            android:text="Quoi ?"
+            android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewWhy"
@@ -45,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/when"
+            android:text="Quand ?"
             android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
@@ -81,7 +80,7 @@
                         android:id="@+id/tvEditDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/edit"
+                        android:text="Modifier"
                         android:gravity="end"
                         />
 
@@ -122,7 +121,7 @@
                         android:id="@+id/tvEditHour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/edit" />
+                        android:text="Modifier" />
 
                 </LinearLayout>
 
@@ -186,7 +185,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/where"
+            android:text="Où ?"
             android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
@@ -216,7 +215,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/who"
+            android:text="Avec qui ?"
             android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
@@ -298,7 +297,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
-            android:text="@string/validate" />
+            android:text="valider" />
 
 
     </LinearLayout>
