@@ -14,9 +14,13 @@ import android.widget.TextView;
 import com.gayo.maru.model.MeetModel;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 public class DetailFragment extends Fragment {
@@ -42,8 +46,8 @@ public class DetailFragment extends Fragment {
         mNbGuest = view.findViewById(R.id.detail_tv_nbGuess);
 
         Bundle data = getArguments();
-        if (data != null){
-            System.err.println("################# Le bundle "+data +" n'est pas vide");
+        if (data != null) {
+            System.err.println("################# Le bundle " + data + " n'est pas vide");
 
             MeetModel currentMeetModel = (MeetModel) getArguments().getSerializable("currentMeet");
 
@@ -59,10 +63,9 @@ public class DetailFragment extends Fragment {
             mRoomName.setText("salle " + roomName);
             mLeader.setText(leaderName);
             mTopicName.setText(topicMeet);
-            mDuration.setText(Integer.toString(durationMeet)+ "h");
-            mDate.setText(dateMeet.toString());
-            mNbGuest.setText(guestsMails.length+ " participants :");
-
+            mDuration.setText("(" + durationMeet + "h)");
+            mDate.setText(ConfigureDateFormat(dateMeet));
+            mNbGuest.setText(guestsMails.length + " participants :");
 
             mRecyclerViewMailGuess = (RecyclerView) view.findViewById(R.id.detail_rv_guess);
             DetailMeetGuessMailRVAdapter adapter = new DetailMeetGuessMailRVAdapter(Arrays.asList(guestsMails), getContext());
@@ -72,18 +75,28 @@ public class DetailFragment extends Fragment {
         } else {
             System.err.println("Le bundle est vide");
         }
-
-
-
-
-
         return view;
-
     }
 
-    private void SetGuestRecyclerView(){
+    private String ConfigureDateFormat(Date dateMeet) {
+        // define a local date format : FRENCH;
+        DateFormat format_fr = DateFormat.getDateInstance(DateFormat.FULL, Locale.FRENCH);
+        DateFormat format_hours = new SimpleDateFormat("HH'h'mm");
 
+        Date now = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(now);
+        calendar.add(Calendar.DAY_OF_WEEK, 1);
+        Date tomorrow = calendar.getTime();
+        String meetHour = format_hours.format(dateMeet);
 
-
+        if (format_fr.format(now).equals(format_fr.format(dateMeet))) {
+            return ("Aujourd'hui à " + meetHour);
+        } else if (format_fr.format(tomorrow).equals(format_fr.format(dateMeet))) {
+            return ("Demain" + meetHour);
+        } else {
+            return (format_fr.format(dateMeet) + " à " + meetHour);
+        }
     }
+
 }

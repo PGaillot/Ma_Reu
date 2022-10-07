@@ -16,7 +16,7 @@ public class DummyMeetApiService implements MeetApiService {
     public List<String> getRooms(){return rooms;}
 
     @Override
-    public void deleteMeet(MeetModel meet) {}
+    public void deleteMeet(MeetModel meet) { meets.remove(meet);}
 
     @Override
     public void createMeet(MeetModel meet) {}

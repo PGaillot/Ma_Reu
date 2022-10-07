@@ -38,7 +38,7 @@ public abstract class DummyMeetGenerator {
             "verte",
             "rose",
             "blanche",
-            "rose"
+            "noir"
     );
 
     public static List<MeetModel> DUMMY_MEETS = Arrays.asList(
@@ -122,7 +122,7 @@ public abstract class DummyMeetGenerator {
         }
 
         // Add days & hours to Calendar.
-        calendar.add(Calendar.DATE, 2);
+        calendar.add(Calendar.DATE, random.nextInt(3));
         calendar.add(Calendar.HOUR, random.nextInt(4));
 
         Date meetDate = calendar.getTime();

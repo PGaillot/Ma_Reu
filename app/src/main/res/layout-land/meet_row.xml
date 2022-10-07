@@ -7,7 +7,7 @@
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/roomColorDotCard"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_margin="16dp"
@@ -24,33 +24,31 @@
         android:id="@+id/textView_leader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:ems="14"
+        android:maxLines="1"
         android:paddingBottom="4dp"
+        android:paddingStart="8dp"
         android:text="Réunion A - 14h00 - Pierre"
+        android:textColor="@color/design_default_color_primary_dark"
         android:textSize="18dp"
         android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@+id/cardView"
-        app:layout_constraintTop_toTopOf="parent"
-        android:ems="14"
-        android:maxLines="1"/>
+        app:layout_constraintStart_toEndOf="@+id/roomColorDotCard"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
         android:id="@+id/textview_mails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="pr.gailot@gmail.com, pr.gailot@gmail.com, pr.gailot@dsfdffffffffffffffffgmail.com"
-        android:textSize="12dp"
-        app:layout_constraintStart_toEndOf="@+id/cardView"
-        app:layout_constraintTop_toBottomOf="@+id/textView_leader"
-        android:textColor="@color/black"
         android:ellipsize="end"
         android:ems="16"
         android:maxLines="1"
-        />
+        android:text="pr.gailot@gmail.com, pr.gailot@gmail.com, pr.gailot@dsfdffffffffffffffffgmail.com"
+        android:textSize="12dp"
+        android:paddingStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/roomColorDotCard"
+        app:layout_constraintTop_toBottomOf="@+id/textView_leader" />
 
     <ImageView
         android:id="@+id/meet_row_iv_delete"

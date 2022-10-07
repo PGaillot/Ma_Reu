@@ -25,7 +25,10 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
+import java.util.Date;
+
 import event.DeleteMeetEvent;
+import service.DatesApiService;
 import service.MeetApiService;
 
 public class MainActivity extends AppCompatActivity {
@@ -64,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         MainMeetsRVAdapter adapter = new MainMeetsRVAdapter(this, mMeetModelArrayList);
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         ShowAndConfigureInfoFragment();
     }
 
@@ -103,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
     public void onDeleteMeet(DeleteMeetEvent event) {
         mMeetApiService.deleteMeet(event.meet);
         initList();
-        System.out.println(mMeetModelArrayList.size());
+        System.out.println(" this meet is delete !");
     }
 
     @Override
@@ -124,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
         Bundle meetCountBundle = new Bundle();
         meetCountBundle.putInt("mainActMeetCount", mMeetCount);
         fragment.setArguments(meetCountBundle);
-        System.out.println("################################# => " + meetCountBundle);
         fragmentTransaction.replace(R.id.MainInfoFrameFragment, fragment).commit();
     }
 
@@ -136,7 +139,6 @@ public class MainActivity extends AppCompatActivity {
         Boolean test2 = findViewById(R.id.MainInfoFrameFragment) != null;
         if (test1 && test2) {
             mainInfoFragment = new MainInfoFragment();
-            System.out.println("AFFICHE INFOS");
             OpenInfoFragment(mainInfoFragment);
         }
     }

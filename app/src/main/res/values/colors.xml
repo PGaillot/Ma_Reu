@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!--ROOM'S COLORS-->
+    <color name="room_blue">#4A5FF0</color>
+    <color name="room_red">#EA6161</color>
+    <color name="room_yellow">#F5D157</color>
+    <color name="room_green">#A4F56E</color>
+    <color name="room_pink">#ED75F1</color>
+    <color name="room_white">#E8E8E8</color>
+    <color name="room_black">#000000</color>
+
 </resources>
