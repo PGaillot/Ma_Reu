@@ -1,7 +1,9 @@
 package com.gayo.maru;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -114,10 +116,31 @@ public class MainMeetsRVAdapter extends RecyclerView.Adapter<MainMeetsRVAdapter.
 
 //            Delete item Click !
             itemView.findViewById(R.id.meet_row_iv_delete).setOnClickListener(view -> {
-                String toastMessage = "La réunion de " + meetsArrayList.get(getAdapterPosition()).getMeetLeader() + " à été effacée.";
-                Toast deleteToast = Toast.makeText(mContext, toastMessage ,Toast.LENGTH_LONG);
-                deleteToast.show();
-                EventBus.getDefault().post(new DeleteMeetEvent(meetsArrayList.get(getAdapterPosition())));
+
+                // Create DialogAlert to confirm the delete action from user.
+                AlertDialog.Builder confirmDeleteMeetAlertDialog = new AlertDialog.Builder(mContext);
+                confirmDeleteMeetAlertDialog.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // User click "Yes"
+                        String toastMessage = "La réunion de " + meetsArrayList.get(getAdapterPosition()).getMeetLeader() + " à été effacée.";
+                        Toast deleteToast = Toast.makeText(mContext, toastMessage ,Toast.LENGTH_LONG);
+                        deleteToast.show();
+                        EventBus.getDefault().post(new DeleteMeetEvent(meetsArrayList.get(getAdapterPosition())));
+                    }
+                });
+
+                confirmDeleteMeetAlertDialog.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // User click "No"
+                        System.out.println("The present Meeting as not been deleted");
+                    }
+                });
+                confirmDeleteMeetAlertDialog.setMessage("de vouloir supprimer cette réunion ?");
+                confirmDeleteMeetAlertDialog.setTitle("Êtes-vous sûr ?");
+                AlertDialog dialog = confirmDeleteMeetAlertDialog.create();
+                dialog.show();
             });
         }
     }

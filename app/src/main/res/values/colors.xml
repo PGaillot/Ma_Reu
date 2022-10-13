@@ -16,4 +16,8 @@
     <color name="room_white">#E8E8E8</color>
     <color name="room_black">#000000</color>
 
+    <!--  DATE TIME PICKER COLORS  -->
+    <color name="mdtp_accent_color">#009688</color>
+    <color name="mdtp_accent_color_dark">#00796b</color>
+
 </resources>

@@ -10,6 +10,8 @@ public interface MeetApiService {
 
     List<String> getRooms();
 
+    void addMeet(MeetModel meet);
+
     void deleteMeet(MeetModel meet);
 
     void createMeet(MeetModel meet);
