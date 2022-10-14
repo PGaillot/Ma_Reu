@@ -62,6 +62,7 @@ public class NewMeetFragment extends Fragment implements TimePickerDialog.OnTime
     int mMeetDuration;
     String mTopic;
 
+    SimpleDateFormat fullSDF = new SimpleDateFormat("dd/MM/yyy:hh:mm");
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
@@ -95,6 +96,7 @@ public class NewMeetFragment extends Fragment implements TimePickerDialog.OnTime
 
         Calendar now = Calendar.getInstance();
 
+
         /** Click to the Edit btn on DATE */
         mLLDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +108,8 @@ public class NewMeetFragment extends Fragment implements TimePickerDialog.OnTime
                         now.get(Calendar.MONTH), // Initial month selection
                         now.get(Calendar.DAY_OF_MONTH) // Inital day selection
                 );
+                dpd.setMinDate(now);
+//                dpd.setVersion(DatePickerDialog.Version.VERSION_2);
                 dpd.show(getParentFragmentManager(), "Datepickerdialog");
             }
         });
@@ -114,7 +118,8 @@ public class NewMeetFragment extends Fragment implements TimePickerDialog.OnTime
         mLLTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                int maxHour = 19;
+                int minHour = 9;
                 TimePickerDialog tpd = TimePickerDialog.newInstance(
                         NewMeetFragment.this,
                         now.get(Calendar.HOUR),
@@ -122,6 +127,11 @@ public class NewMeetFragment extends Fragment implements TimePickerDialog.OnTime
                         now.get(Calendar.SECOND),
                         true
                 );
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.HOUR, 9);
+                tpd.setMinTime(minHour, 00, 00);
+                tpd.setMaxTime(maxHour, 00, 00);
+//                tpd.setVersion(TimePickerDialog.Version.VERSION_2);
                 tpd.show(getParentFragmentManager(), "Timepickerdialog");
             }
         });
@@ -133,8 +143,6 @@ public class NewMeetFragment extends Fragment implements TimePickerDialog.OnTime
                 addChipMail();
             }
         });
-
-
         mTVDate = view.findViewById(R.id.editTextDate);
         mTVTime = view.findViewById(R.id.tvHour);
         mTodayDate = new Date(System.currentTimeMillis());
@@ -148,15 +156,10 @@ public class NewMeetFragment extends Fragment implements TimePickerDialog.OnTime
             mTVDate.setText(dateFormatter.format(mMeetDate));
         }
         mTVTime.setText(hourFormatter.format(mMeetDate) + 'h' + minFormatter.format(mMeetDate));
-
-
         SetRoomsSpinner();
-
         mDurationSeekbar.setMax(7);
         mDurationSeekbar.setProgress(1);
-
         mDurationSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
             int progress = 1;
 
             @Override
@@ -348,8 +351,19 @@ public class NewMeetFragment extends Fragment implements TimePickerDialog.OnTime
             } else if (hour != null) {
                 mMeetDate = tDateFormat.parse(hour);
             } else {
-            } System.out.println(mMeetDate);
+            }
+            System.out.println(mMeetDate);
         }
     }
 
+
+    Date GenerateDate(int day, int month, int year, int hour, int min) {
+        Date newDate = null;
+        try {
+            newDate = this.fullSDF.parse(day + "/" + month + "/" + year + ":" + hour + ":" + min);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return newDate;
+    }
 }
