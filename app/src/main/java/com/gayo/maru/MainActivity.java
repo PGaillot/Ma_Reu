@@ -26,12 +26,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mMeetApiService = DI.getMeetApiService();
         mAddFab = findViewById(R.id.fab);
-        // ToolBar
         mToolbar = findViewById(R.id.toolbar);
         configureToolbar();
 
-
-        // Fav BTN Click
         mAddFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,20 +55,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
     private void openMeetListFragment() {
         mMeetListFragment = new MeetListFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.fl_mainActivity, mMeetListFragment)
                 .commit();
-    }
-
-    private void showAndConfigureInfoFragment() {
-        mMainInfoFragment = getSupportFragmentManager().findFragmentById(R.id.MainInfoFrameFragment);
-        if (mMainInfoFragment == null && findViewById(R.id.MainInfoFrameFragment) != null) {
-            OpenInfoFragment();
-        }
     }
 
     public void openDetailFragment(MeetModel model) {
@@ -93,6 +82,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void showAndConfigureInfoFragment() {
+        mMainInfoFragment = getSupportFragmentManager().findFragmentById(R.id.MainInfoFrameFragment);
+        if (mMainInfoFragment == null && findViewById(R.id.MainInfoFrameFragment) != null) {
+            OpenInfoFragment();
+        }
+    }
+
     public void OpenInfoFragment() {
         mMainInfoFragment = new MainInfoFragment();
         mMeetCount = mMeetApiService.getTodayMeets().size();
@@ -108,14 +104,5 @@ public class MainActivity extends AppCompatActivity {
     public void OpenAddNewMeetActivity() {
         Intent intent = new Intent(this, NewMeetActivity.class);
         startActivity(intent);
-    }
-
-    public void setBackButton(boolean enabled) {
-//        ActionBar actionBar = getSupportActionBar();
-//        if (enabled) {
-//            actionBar.setHomeButtonEnabled(true);
-//        } else {
-//            actionBar.setHomeButtonEnabled(false);
-//        }
     }
 }

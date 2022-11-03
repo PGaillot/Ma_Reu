@@ -58,9 +58,4 @@ public class DummyDatesApiService implements DatesApiService {
         }
     }
 
-    public long setMilSecDate(MeetModel meet){
-        long mSecDate = meet.getDate().getTime();
-        return mSecDate;
-    }
-
 }

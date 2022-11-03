@@ -33,12 +33,9 @@ public class MeetListFragment extends Fragment {
     private MainMeetsRVAdapter adapter;
     private Context thisContext;
 
-
     public MeetListFragment() {
         // Required empty public constructor
     }
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -103,8 +100,6 @@ public class MeetListFragment extends Fragment {
     public void onDeleteMeet(DeleteMeetEvent event) {
         mMeetApiService.deleteMeet(event.meet);
         refreshList();
-//        initList();
-
         System.out.println(" this meet is delete !");
     }
 

@@ -23,7 +23,6 @@ public class DummyMeetApiService implements MeetApiService {
     public List<MeetModel> getMeetFromDate(Date date) {
         List<MeetModel> todayMeets = new ArrayList<>();
         DateFormat day = new SimpleDateFormat("dd");
-
         for (MeetModel meet :
                 getMeets()) {
             if (day.format(date).equals(day.format(meet.getDate()))){

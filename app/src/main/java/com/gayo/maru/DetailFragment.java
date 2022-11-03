@@ -34,7 +34,6 @@ public class DetailFragment extends Fragment {
 
     public static DetailFragment newInstance(MeetModel model) {
         DetailFragment detailFragment = new DetailFragment();
-
         // Pass Arguments
         Bundle MeetBundle = new Bundle();
         MeetBundle.putSerializable(argumentKey, model);
@@ -46,11 +45,7 @@ public class DetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        // initialize view
         View view = inflater.inflate(R.layout.fragment_detail, container, false);
-
-        // assign Meet data Variables
         mRoomName = view.findViewById(R.id.detail_tv_room);
         mLeader = view.findViewById(R.id.detail_tv_leader);
         mDuration = view.findViewById(R.id.detail_tv_duration);
@@ -58,7 +53,6 @@ public class DetailFragment extends Fragment {
         mTopicName = view.findViewById(R.id.detail_tv_topic);
         mRecyclerViewMailGuess = view.findViewById(R.id.detail_rv_guess);
         mNbGuest = view.findViewById(R.id.detail_tv_nbGuess);
-
         return view;
     }
 
@@ -68,10 +62,7 @@ public class DetailFragment extends Fragment {
 //        ((MainActivity) getActivity()).setBackButton(true);
         Bundle data = getArguments();
         if (data != null) {
-            System.err.println("Le bundle " + data + " n'est pas vide");
-
             MeetModel currentMeetModel = (MeetModel) getArguments().getSerializable(argumentKey);
-
             // get variables from the model
             String roomName = currentMeetModel.getRoom();
             String topicMeet = currentMeetModel.getTopic();
@@ -79,7 +70,6 @@ public class DetailFragment extends Fragment {
             String[] guestsMails = currentMeetModel.getMails();
             int durationMeet = currentMeetModel.getDuration();
             Date dateMeet = currentMeetModel.getDate();
-
             // set variable to fragment
             mRoomName.setText("salle " + roomName);
             mLeader.setText(leaderName);
@@ -87,12 +77,10 @@ public class DetailFragment extends Fragment {
             mDuration.setText("(" + durationMeet + "h)");
             mDate.setText(ConfigureDateFormat(dateMeet));
             mNbGuest.setText(guestsMails.length + " participants :");
-
             mRecyclerViewMailGuess = (RecyclerView) view.findViewById(R.id.detail_rv_guess);
             DetailMeetGuessMailRVAdapter adapter = new DetailMeetGuessMailRVAdapter(Arrays.asList(guestsMails), getContext());
             mRecyclerViewMailGuess.setAdapter(adapter);
             mRecyclerViewMailGuess.setLayoutManager(new LinearLayoutManager(getContext()));
-
         } else {
             System.err.println("Le bundle est vide");
         }
@@ -102,14 +90,12 @@ public class DetailFragment extends Fragment {
         // define a local date format : FRENCH;
         DateFormat format_fr = DateFormat.getDateInstance(DateFormat.FULL, Locale.FRENCH);
         DateFormat format_hours = new SimpleDateFormat("HH'h'mm");
-
         Date now = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(now);
         calendar.add(Calendar.DAY_OF_WEEK, 1);
         Date tomorrow = calendar.getTime();
         String meetHour = format_hours.format(dateMeet);
-
         if (format_fr.format(now).equals(format_fr.format(dateMeet))) {
             return ("Aujourd'hui à " + meetHour);
         } else if (format_fr.format(tomorrow).equals(format_fr.format(dateMeet))) {

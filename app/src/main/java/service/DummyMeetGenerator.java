@@ -51,8 +51,6 @@ public abstract class DummyMeetGenerator {
             new MeetModel(PERSON_LIST.get(4).getName(), ROOMS_LIST.get(6), SetUpListMail(4), SetUpDate(), 2, "le topic le topic le topic le topic le topic le topic le topic " )
     );
 
-
-
     /**
      * Generate a List<MeetModel> of Meets
      * @return List<MeetModel>
