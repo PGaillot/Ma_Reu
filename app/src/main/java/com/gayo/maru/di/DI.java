@@ -18,7 +18,6 @@ public class DI {
     public static MeetApiService getMeetApiService() {
         return sMeetApiService;
     }
-
     public static DatesApiService getDatesApiService() {
         return sDatesApiService;
     }

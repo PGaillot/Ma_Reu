@@ -1,5 +1,7 @@
 package service;
 
+import com.gayo.maru.model.MeetModel;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -54,6 +56,11 @@ public class DummyDatesApiService implements DatesApiService {
         } else {
         return mHH +"h";
         }
+    }
+
+    public long setMilSecDate(MeetModel meet){
+        long mSecDate = meet.getDate().getTime();
+        return mSecDate;
     }
 
 }

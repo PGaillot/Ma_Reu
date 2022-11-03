@@ -17,6 +17,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gayo.maru.di.DI;
@@ -27,6 +30,9 @@ import org.greenrobot.eventbus.EventBus;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
 
 import event.DeleteMeetEvent;
 import service.DatesApiService;
@@ -35,10 +41,12 @@ public class MainMeetsRVAdapter extends RecyclerView.Adapter<MainMeetsRVAdapter.
 
     ArrayList<MeetModel> meetsArrayList;
     Context mContext;
+    MainMeetRVAdapterItemClickListener mMainMeetRVAdapterItemClickListener;
 
-    public MainMeetsRVAdapter(Context context, ArrayList<MeetModel> meetsArrayList) {
+    public MainMeetsRVAdapter(Context context, ArrayList<MeetModel> meetsArrayList, MainMeetRVAdapterItemClickListener mMainMeetRVAdapterItemClickListener) {
         this.mContext = context;
         this.meetsArrayList = meetsArrayList;
+        this.mMainMeetRVAdapterItemClickListener = mMainMeetRVAdapterItemClickListener;
     }
 
     @NonNull
@@ -51,18 +59,13 @@ public class MainMeetsRVAdapter extends RecyclerView.Adapter<MainMeetsRVAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.leaderName.setText( DI.getDatesApiService().GenerateDateString(meetsArrayList.get(position).getDate())+ " à " + DI.getDatesApiService().GenerateHourString(meetsArrayList.get(position).getDate()) + " - " + meetsArrayList.get(position).getMeetLeader());
+        holder.leaderName.setText(DI.getDatesApiService().GenerateDateString(meetsArrayList.get(position).getDate()) + " à " + DI.getDatesApiService().GenerateHourString(meetsArrayList.get(position).getDate()) + " - " + meetsArrayList.get(position).getMeetLeader());
         holder.mails.setText(String.join(", ", meetsArrayList.get(position).getMails()));
         holder.roomColorDot.setCardBackgroundColor(GetColorLinkOfRoom(meetsArrayList.get(position).getRoom()));
-
-//        Click on the item row
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent detailActivityIntent = new Intent(view.getContext(), DetailMeetActivity.class);
-                MeetModel currentMeet = meetsArrayList.get(position);
-                detailActivityIntent.putExtra("currentMeet", currentMeet);
-                view.getContext().startActivity(detailActivityIntent);
+                mMainMeetRVAdapterItemClickListener.onClick(meetsArrayList.get(position));
             }
         });
     }
@@ -103,8 +106,14 @@ public class MainMeetsRVAdapter extends RecyclerView.Adapter<MainMeetsRVAdapter.
         return meetsArrayList.size();
     }
 
+    public void update(ArrayList<MeetModel> list) {
+        meetsArrayList.clear();
+        meetsArrayList.addAll(list);
+        notifyDataSetChanged();
+    }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
+
         TextView leaderName, mails;
         CardView roomColorDot;
 
@@ -114,7 +123,7 @@ public class MainMeetsRVAdapter extends RecyclerView.Adapter<MainMeetsRVAdapter.
             mails = itemView.findViewById(R.id.textview_mails);
             roomColorDot = itemView.findViewById(R.id.roomColorDotCard);
 
-//            Delete item Click !
+            //  Delete item Click !
             itemView.findViewById(R.id.meet_row_iv_delete).setOnClickListener(view -> {
 
                 // Create DialogAlert to confirm the delete action from user.
@@ -124,7 +133,7 @@ public class MainMeetsRVAdapter extends RecyclerView.Adapter<MainMeetsRVAdapter.
                     public void onClick(DialogInterface dialogInterface, int i) {
                         // User click "Yes"
                         String toastMessage = "La réunion de " + meetsArrayList.get(getAdapterPosition()).getMeetLeader() + " à été effacée.";
-                        Toast deleteToast = Toast.makeText(mContext, toastMessage ,Toast.LENGTH_LONG);
+                        Toast deleteToast = Toast.makeText(mContext, toastMessage, Toast.LENGTH_LONG);
                         deleteToast.show();
                         EventBus.getDefault().post(new DeleteMeetEvent(meetsArrayList.get(getAdapterPosition())));
                     }
@@ -144,4 +153,5 @@ public class MainMeetsRVAdapter extends RecyclerView.Adapter<MainMeetsRVAdapter.
             });
         }
     }
+
 }

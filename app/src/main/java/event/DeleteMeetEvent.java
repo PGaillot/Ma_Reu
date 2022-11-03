@@ -16,6 +16,5 @@ public class DeleteMeetEvent {
      */
     public DeleteMeetEvent(MeetModel meet) {
         this.meet = meet;
-        System.out.println("3333333333333333333333333333333333333333333333333333333333333333333");
     }
 }

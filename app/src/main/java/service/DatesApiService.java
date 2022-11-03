@@ -11,4 +11,5 @@ public interface DatesApiService {
     String GenerateDateString(Date date);
 
     String GenerateHourString(Date date);
+
 }

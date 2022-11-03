@@ -24,7 +24,6 @@ public class MainInfoFragment extends Fragment {
 
         Bundle data = getArguments();
         if (data != null) {
-            System.out.println("Le bundle n'est pas vide ! ");
             mMeetCount = getArguments().getInt("mainActMeetCount");
         } else {
             System.out.println("Le bundle est vide ... ");
