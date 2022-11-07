@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class MeetModel implements Serializable {
+
     String topic;
     String meetLeader;
     String room;
@@ -12,15 +13,16 @@ public class MeetModel implements Serializable {
     int duration;
 
 
-
     public MeetModel(String meetLeader, String room, String[] mails, Date date, int duration, String topic) {
+        this.topic = topic;
         this.meetLeader = meetLeader;
         this.room = room;
         this.mails = mails;
         this.date = date;
         this.duration = duration;
-        this.topic = topic;
     }
+
+
 
     public String getMeetLeader() {
         return meetLeader;

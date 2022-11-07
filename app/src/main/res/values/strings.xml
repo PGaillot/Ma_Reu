@@ -2,46 +2,23 @@
     <string name="app_name">Ma Réu</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
+    <string name="first_fragment_label">Premier Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="next">Suivant</string>
+    <string name="previous">Précedent</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
-    <string-array name="rooms_name">
-        <item>bleu</item>
-        <item>jaune</item>
-        <item>rouge</item>
-        <item>verte</item>
-        <item>blanche</item>
-        <item>noire</item>
-        <item>rose</item>
-    </string-array>
+    <!-- BUTTONS -->
+    <string name="validate">valider</string>
+    <string name="edit">modifier</string>
 
-    <string-array name="users_mails">
-        <item>pr.gaillot@gmail.com</item>
-        <item>lea.coul@yahoo.fr</item>
-        <item>kevin1000@gmail.com</item>
-        <item>timSalme@gmail.com</item>
-        <item>benedego@gmail.com</item>
-        <item>muzinsky.pauline@gmail.com</item>
-        <item>dubois.julien@gmail.com</item>
-        <item>mathias.ctn@gmail.com</item>
-        <item>ccousin@gmail.com</item>
-    </string-array>
-
-    <string-array name="meet_leaders">
-        <item>Pierre</item>
-        <item>Tim</item>
-        <item>Kevin</item>
-        <item>Léa</item>
-        <item>Julien</item>
-        <item>Béné</item>
-        <item>Damien</item>
-        <item>Clémence</item>
-    </string-array>
+    <!-- QUESTION -->
+    <string name="what">Quoi ?</string>
+    <string name="where">Où ?</string>
+    <string name="when">Quand ?</string>
+    <string name="who">Avec qui ?</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
