@@ -1,7 +1,7 @@
 <resources>
     <dimen name="fab_margin">48dp</dimen>
-    <dimen name="detail_topic">28dp</dimen>
-    <dimen name="detail_room">20dp</dimen>
+    <dimen name="detail_topic">18dp</dimen>
+    <dimen name="detail_room">16dp</dimen>
     <dimen name="row_meetList_leader">8dp</dimen>
 
 </resources>

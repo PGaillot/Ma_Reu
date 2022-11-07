@@ -42,13 +42,13 @@ public abstract class DummyMeetGenerator {
     );
 
     public static List<MeetModel> DUMMY_MEETS = Arrays.asList(
-            new MeetModel(PERSON_LIST.get(0).getName(), ROOMS_LIST.get(0), SetUpListMail(0), SetUpDate(), 2, "le topic " ),
-            new MeetModel(PERSON_LIST.get(2).getName(), ROOMS_LIST.get(1), SetUpListMail(2), SetUpDate(), 2, "le topic le topic " ),
-            new MeetModel(PERSON_LIST.get(3).getName(), ROOMS_LIST.get(2), SetUpListMail(3), SetUpDate(), 2, "le topic le topic le topic " ),
-            new MeetModel(PERSON_LIST.get(1).getName(), ROOMS_LIST.get(3), SetUpListMail(1), SetUpDate(), 2, "le topic le topic le topic le topic " ),
-            new MeetModel(PERSON_LIST.get(2).getName(), ROOMS_LIST.get(4), SetUpListMail(2), SetUpDate(), 2, "le topic le topic le topic le topic le topic " ),
-            new MeetModel(PERSON_LIST.get(3).getName(), ROOMS_LIST.get(5), SetUpListMail(3), SetUpDate(), 2, "le topic le topic le topic le topic le topic le topic " ),
-            new MeetModel(PERSON_LIST.get(4).getName(), ROOMS_LIST.get(6), SetUpListMail(4), SetUpDate(), 2, "le topic le topic le topic le topic le topic le topic le topic " )
+            new MeetModel(PERSON_LIST.get(0).getName(), ROOMS_LIST.get(0), SetUpListMail(0), SetUpDate(), 2, "Adep -PTEM point Front" ),
+            new MeetModel(PERSON_LIST.get(2).getName(), ROOMS_LIST.get(1), SetUpListMail(2), SetUpDate(), 2, "Creation logo FONGEP" ),
+            new MeetModel(PERSON_LIST.get(3).getName(), ROOMS_LIST.get(2), SetUpListMail(3), SetUpDate(), 2, "Amenagement esspace 216" ),
+            new MeetModel(PERSON_LIST.get(1).getName(), ROOMS_LIST.get(3), SetUpListMail(1), SetUpDate(), 2, "Presentation du projet Colabortatif BEECOM" ),
+            new MeetModel(PERSON_LIST.get(2).getName(), ROOMS_LIST.get(4), SetUpListMail(2), SetUpDate(), 2, "Creation presonnage Nano" ),
+            new MeetModel(PERSON_LIST.get(3).getName(), ROOMS_LIST.get(5), SetUpListMail(3), SetUpDate(), 2, "Aménagement interieur UNIK" ),
+            new MeetModel(PERSON_LIST.get(4).getName(), ROOMS_LIST.get(6), SetUpListMail(4), SetUpDate(), 2, "La Méthodalogie chez ESS-TEAM" )
     );
 
     /**
