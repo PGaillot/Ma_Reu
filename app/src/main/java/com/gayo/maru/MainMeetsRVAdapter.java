@@ -107,7 +107,7 @@ public class MainMeetsRVAdapter extends RecyclerView.Adapter<MainMeetsRVAdapter.
     }
 
     public void update(ArrayList<MeetModel> list) {
-        meetsArrayList.clear();
+        meetsArrayList = new ArrayList<>();
         meetsArrayList.addAll(list);
         notifyDataSetChanged();
     }

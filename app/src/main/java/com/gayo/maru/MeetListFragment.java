@@ -32,6 +32,8 @@ public class MeetListFragment extends Fragment {
     private ArrayList<MeetModel> mMeetList;
     private MainMeetsRVAdapter adapter;
     private Context thisContext;
+    private MainActivity mMainActivity;
+    private Fragment mMainInfoFragment;
 
     public MeetListFragment() {
         // Required empty public constructor
@@ -99,6 +101,11 @@ public class MeetListFragment extends Fragment {
     @Subscribe
     public void onDeleteMeet(DeleteMeetEvent event) {
         mMeetApiService.deleteMeet(event.meet);
+        mMainActivity = (MainActivity) getActivity();
+        mMainInfoFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.MainInfoFrameFragment);
+        if(mMainInfoFragment != null){
+        mMainActivity.OpenInfoFragment();
+        }
         refreshList();
         System.out.println(" this meet is delete !");
     }

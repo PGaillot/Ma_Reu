@@ -7,6 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!--  LEVEL-UP COLORS  -->
+    <color name="orange_200">#FF630F</color>
+    <color name="orange_500">#D64C02</color>
+    <color name="orange_50">#FFCDB3</color>
+
     <!--ROOM'S COLORS-->
     <color name="room_blue">#4A5FF0</color>
     <color name="room_red">#EA6161</color>

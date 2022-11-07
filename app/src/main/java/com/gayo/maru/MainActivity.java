@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void showAndConfigureInfoFragment() {
+    public void showAndConfigureInfoFragment() {
         mMainInfoFragment = getSupportFragmentManager().findFragmentById(R.id.MainInfoFrameFragment);
         if (mMainInfoFragment == null && findViewById(R.id.MainInfoFrameFragment) != null) {
             OpenInfoFragment();

@@ -22,14 +22,8 @@ public class MainInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Bundle data = getArguments();
-        if (data != null) {
-            mMeetCount = getArguments().getInt("mainActMeetCount");
-        } else {
-            System.out.println("Le bundle est vide ... ");
-        }
 
-        System.out.println("mMeetCount ========================== " + mMeetCount);
+        update();
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main_info, container, false);
@@ -44,6 +38,15 @@ public class MainInfoFragment extends Fragment {
             mMeetCountTV.setText("Aujourd'hui il y a " + mMeetCount + " réunion.");
         }
         return view;
+    }
+
+    public void update(){
+        Bundle data = getArguments();
+        if (data != null) {
+            mMeetCount = getArguments().getInt("mainActMeetCount");
+        } else {
+            System.out.println("Le bundle est vide ... ");
+        }
     }
 
 }
