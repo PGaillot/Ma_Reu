@@ -26,10 +26,7 @@ public class DummyMeetApiService implements MeetApiService {
         for (MeetModel meet :
                 getMeets()) {
             if (day.format(date).equals(day.format(meet.getDate()))){
-                System.out.println(day.format(date) + "=" + day.format(meet.getDate()));
                 todayMeets.add(meet);
-            } else {
-                System.out.println(day.format(date) + "!=" +  day.format(meet.getDate()));
             }
         }
         return todayMeets;

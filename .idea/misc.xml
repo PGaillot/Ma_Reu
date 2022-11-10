@@ -3,12 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Code/MaRu/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.138" />
+        <entry key="..\:/Code/MaRu/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.138" />
+        <entry key="..\:/Code/MaRu/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.138" />
+        <entry key="..\:/Code/MaRu/app/src/main/res/drawable/ic_launcher_background.xml" value="0.138" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/activity_detail_meet.xml" value="0.1" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/activity_main.xml" value="0.25" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/activity_new_meet.xml" value="0.15416666666666667" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/content_main.xml" value="0.15416666666666667" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/fragment_calendar.xml" value="0.15416666666666667" />
-        <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/fragment_detail.xml" value="0.2" />
+        <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/fragment_detail.xml" value="0.33" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/fragment_first.xml" value="0.15416666666666667" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/fragment_main_info.xml" value="0.16" />
         <entry key="..\:/Code/MaRu/app/src/main/res/layout-land/fragment_meet_list.xml" value="0.14770723104056438" />

@@ -3,5 +3,4 @@
     <dimen name="detail_topic">20dp</dimen>
     <dimen name="detail_room">28dp</dimen>
     <dimen name="row_meetList_leader">20dp</dimen>
-
 </resources>

@@ -20,6 +20,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 import event.DeleteMeetEvent;
 import service.MeetApiService;
@@ -29,27 +30,17 @@ public class MeetListFragment extends Fragment {
 
     private MeetApiService mMeetApiService;
     private RecyclerView mRecyclerView;
-    private ArrayList<MeetModel> mMeetList;
     private MainMeetsRVAdapter adapter;
-    private Context thisContext;
-    private MainActivity mMainActivity;
-    private Fragment mMainInfoFragment;
 
-    public MeetListFragment() {
-        // Required empty public constructor
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mMeetApiService = DI.getMeetApiService();
-        mMeetList = (ArrayList<MeetModel>) mMeetApiService.getMeets();
-        sortMeetList();
-        thisContext = getActivity();
     }
 
-    private void sortMeetList() {
-        Collections.sort(mMeetList, new Comparator<MeetModel>() {
+    private void sortMeetList(List<MeetModel> meets) {
+        Collections.sort(meets, new Comparator<MeetModel>() {
             @Override
             public int compare(MeetModel m1, MeetModel m2) {
                 return m1.getDate().compareTo(m2.getDate());
@@ -68,21 +59,23 @@ public class MeetListFragment extends Fragment {
 
 
     private void initList() {
-        mMeetList = (ArrayList<MeetModel>) mMeetApiService.getMeets();
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(thisContext));
-        adapter = new MainMeetsRVAdapter(getContext(), mMeetList, new MainMeetRVAdapterItemClickListener() {
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new MainMeetsRVAdapter(getContext(), new ArrayList<>(), new MainMeetRVAdapterItemClickListener() {
             @Override
             public void onClick(MeetModel model) {
                 ((MainActivity)getActivity()).openDetailFragment(model);
+                ((MainActivity)getActivity()).testSelectedMeet();
             }
         });
         mRecyclerView.setAdapter(adapter);
+        refreshList();
     }
 
 
     private void refreshList() {
-        mMeetList = (ArrayList<MeetModel>) mMeetApiService.getMeets();
-        adapter.update(mMeetList);
+        ArrayList<MeetModel> meets = (ArrayList<MeetModel>) mMeetApiService.getMeets();
+        sortMeetList(meets);
+        adapter.update(meets);
     }
 
     @Override
@@ -101,8 +94,8 @@ public class MeetListFragment extends Fragment {
     @Subscribe
     public void onDeleteMeet(DeleteMeetEvent event) {
         mMeetApiService.deleteMeet(event.meet);
-        mMainActivity = (MainActivity) getActivity();
-        mMainInfoFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.MainInfoFrameFragment);
+        MainActivity mMainActivity = (MainActivity) getActivity();
+        Fragment mMainInfoFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.MainInfoFrameFragment);
         if(mMainInfoFragment != null){
         mMainActivity.OpenInfoFragment();
         }

@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment mMainInfoFragment;
     private FloatingActionButton mAddFab;
     private Toolbar mToolbar;
+    public MeetModel mSelectedMeet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
+//        mSelectedMeet = null;
+        testSelectedMeet();
         return true;
     }
 
@@ -64,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openDetailFragment(MeetModel model) {
+        mSelectedMeet = model;
         DetailFragment detailFragment = new DetailFragment();
         Bundle meetBundle = new Bundle();
         meetBundle.putSerializable("meet", model);
@@ -84,8 +88,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void showAndConfigureInfoFragment() {
         mMainInfoFragment = getSupportFragmentManager().findFragmentById(R.id.MainInfoFrameFragment);
-        if (mMainInfoFragment == null && findViewById(R.id.MainInfoFrameFragment) != null) {
+        if (mSelectedMeet == null && mMainInfoFragment == null && findViewById(R.id.MainInfoFrameFragment) != null) {
             OpenInfoFragment();
+        } else if(mSelectedMeet != null){
+            System.out.println("mSelectedMeet is not null");
+            openDetailFragment(mSelectedMeet);
+        } else if(mSelectedMeet == null){
+            System.out.println("mSelectedMeet is null");
         }
     }
 
@@ -105,4 +114,16 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NewMeetActivity.class);
         startActivity(intent);
     }
+
+
+    public void testSelectedMeet(){
+        String message = "ERROR";
+        if(mSelectedMeet != null){
+            message = "==========> SelectedMeet : " + mSelectedMeet.getMeetLeader();
+        } else {
+            message = "==========> NO MEET SELECTED";
+        }
+        System.out.println(message);
+    }
+
 }

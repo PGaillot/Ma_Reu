@@ -27,10 +27,6 @@ public class DummyDatesApiService implements DatesApiService {
         }
     }
 
-    @Override
-    public void PrintToday() {
-        System.out.println(mDateFormat_DDMMYYYY.format(now));
-    }
 
     @Override
     public String GenerateDateString(Date date) {
@@ -54,7 +50,7 @@ public class DummyDatesApiService implements DatesApiService {
         if (mMM >= 1 && mMM <= 30){
             return mHH + "h30";
         } else {
-        return mHH +"h";
+        return ( mHH + 1) +"h";
         }
     }
 
