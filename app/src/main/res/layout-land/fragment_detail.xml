@@ -46,15 +46,9 @@
                 android:layout_height="wrap_content"
 
                 android:layout_marginEnd="8dp"
-                android:text="Vendredi 11 novembre 2022 à"
+                android:text="Vendredi 11 novembre 2022 à 17h (2h)"
                 android:textSize="20dp" />
 
-            <TextView
-                android:id="@+id/detail_tv_duration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="(2h)"
-                android:textSize="20dp" />
         </LinearLayout>
 
         <View

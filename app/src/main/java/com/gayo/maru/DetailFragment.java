@@ -29,7 +29,7 @@ public class DetailFragment extends Fragment {
 
     private static final String argumentKey = "meet";
 
-    TextView mDuration, mLeader, mDate, mTopicName, mRoomName, mNbGuest;
+    TextView  mLeader, mDate, mTopicName, mRoomName, mNbGuest;
     RecyclerView mRecyclerViewMailGuess;
 
     public static DetailFragment newInstance(MeetModel model) {
@@ -48,7 +48,6 @@ public class DetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_detail, container, false);
         mRoomName = view.findViewById(R.id.detail_tv_room);
         mLeader = view.findViewById(R.id.detail_tv_leader);
-        mDuration = view.findViewById(R.id.detail_tv_duration);
         mDate = view.findViewById(R.id.detail_tv_date);
         mTopicName = view.findViewById(R.id.detail_tv_topic);
         mRecyclerViewMailGuess = view.findViewById(R.id.detail_rv_guess);
@@ -74,8 +73,7 @@ public class DetailFragment extends Fragment {
             mRoomName.setText("salle " + roomName);
             mLeader.setText(leaderName);
             mTopicName.setText(topicMeet);
-            mDuration.setText("(" + durationMeet + "h)");
-            mDate.setText(ConfigureDateFormat(dateMeet));
+            mDate.setText(ConfigureDateFormat(dateMeet) + " (" + durationMeet + "h)");
             mNbGuest.setText(guestsMails.length + " participants :");
             mRecyclerViewMailGuess = (RecyclerView) view.findViewById(R.id.detail_rv_guess);
             DetailMeetGuessMailRVAdapter adapter = new DetailMeetGuessMailRVAdapter(Arrays.asList(guestsMails), getContext());
