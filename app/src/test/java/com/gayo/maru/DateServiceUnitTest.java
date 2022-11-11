@@ -86,7 +86,7 @@ public class DateServiceUnitTest {
 
     @Test
     public void testGenerateHourStringReturnHourFormatHalfHourWithSuccess() {
-        calendar.set(Calendar.HOUR, 9);
+        calendar.set(Calendar.HOUR, 21);
         calendar.set(Calendar.MINUTE, 27);
         Date testDate = calendar.getTime();
         assertEquals("9h30", service.GenerateHourString(testDate));
@@ -94,6 +94,7 @@ public class DateServiceUnitTest {
 
     @Test
     public void testGenerateHourStringReturnHourNotFormatHalfHour() {
+        calendar.set(Calendar.AM_PM, Calendar.AM);
         calendar.set(Calendar.HOUR, 9);
         calendar.set(Calendar.MINUTE, 27);
         Date testDate = calendar.getTime();
@@ -102,6 +103,7 @@ public class DateServiceUnitTest {
 
     @Test
     public void testGenerateHourStringReturnHourFormatWithSuccess() {
+        calendar.set(Calendar.AM_PM, Calendar.AM);
         calendar.set(Calendar.HOUR, 9);
         calendar.set(Calendar.MINUTE, 52);
         Date testDate = calendar.getTime();

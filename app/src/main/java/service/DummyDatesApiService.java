@@ -42,16 +42,20 @@ public class DummyDatesApiService implements DatesApiService {
         }
     }
 
-    public String GenerateHourString(Date date){
+    public String GenerateHourString(Date date) {
         DateFormat mDateFormatterHH = new SimpleDateFormat("HH");
         DateFormat mDateFormatterMM = new SimpleDateFormat("mm");
         int mHH = Integer.parseInt(mDateFormatterHH.format(date));
         int mMM = Integer.parseInt(mDateFormatterMM.format(date));
-        if (mMM >= 1 && mMM <= 30){
+        if (mMM >= 1 && mMM <= 30) {
             return mHH + "h30";
+        } else if (mMM == 0) {
+            return mHH + "h";
         } else {
-        return ( mHH + 1) +"h";
+            return mHH + 1 + "h";
         }
     }
-
 }
+
+
+

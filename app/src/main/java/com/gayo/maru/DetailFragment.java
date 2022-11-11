@@ -97,7 +97,7 @@ public class DetailFragment extends Fragment {
         if (format_fr.format(now).equals(format_fr.format(dateMeet))) {
             return ("Aujourd'hui à " + meetHour);
         } else if (format_fr.format(tomorrow).equals(format_fr.format(dateMeet))) {
-            return ("Demain" + meetHour);
+            return ("Demain à" + meetHour);
         } else {
             return (format_fr.format(dateMeet) + " à " + meetHour);
         }

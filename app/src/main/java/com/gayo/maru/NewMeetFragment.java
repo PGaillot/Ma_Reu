@@ -62,12 +62,10 @@ public class NewMeetFragment extends Fragment implements TimePickerDialog.OnTime
     int mMeetDuration;
     String mTopic;
 
-    SimpleDateFormat fullSDF = new SimpleDateFormat("dd/MM/yyy:hh:mm");
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
         mDateString = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
-//        mMeetDate = new SimpleDateFormat("dd/MM/yyyy").parse(mDateString);
         mTVDate.setText(mDateString);
     }
 
@@ -109,7 +107,6 @@ public class NewMeetFragment extends Fragment implements TimePickerDialog.OnTime
                         now.get(Calendar.DAY_OF_MONTH) // Inital day selection
                 );
                 dpd.setMinDate(now);
-//                dpd.setVersion(DatePickerDialog.Version.VERSION_2);
                 dpd.show(getParentFragmentManager(), "Datepickerdialog");
             }
         });
@@ -131,7 +128,6 @@ public class NewMeetFragment extends Fragment implements TimePickerDialog.OnTime
                 cal.set(Calendar.HOUR, 9);
                 tpd.setMinTime(minHour, 00, 00);
                 tpd.setMaxTime(maxHour, 00, 00);
-//                tpd.setVersion(TimePickerDialog.Version.VERSION_2);
                 tpd.show(getParentFragmentManager(), "Timepickerdialog");
             }
         });
@@ -187,7 +183,7 @@ public class NewMeetFragment extends Fragment implements TimePickerDialog.OnTime
             public void onClick(View view) {
                 /** On the validate btn click.*/
                 mMeetRoom = mRoomSpinner.getSelectedItem().toString();
-                mMeetDuration = mDurationSeekbar.getProgress();
+                mMeetDuration = mDurationSeekbar.getProgress() +1;
                 if (FormIsValid()) {
                     try {
                         SetMeetDate(mDateString, mTimeString);
@@ -357,13 +353,4 @@ public class NewMeetFragment extends Fragment implements TimePickerDialog.OnTime
     }
 
 
-    Date GenerateDate(int day, int month, int year, int hour, int min) {
-        Date newDate = null;
-        try {
-            newDate = this.fullSDF.parse(day + "/" + month + "/" + year + ":" + hour + ":" + min);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return newDate;
-    }
 }

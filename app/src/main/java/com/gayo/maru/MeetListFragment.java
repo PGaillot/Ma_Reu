@@ -64,7 +64,6 @@ public class MeetListFragment extends Fragment {
             @Override
             public void onClick(MeetModel model) {
                 ((MainActivity)getActivity()).openDetailFragment(model);
-                ((MainActivity)getActivity()).testSelectedMeet();
             }
         });
         mRecyclerView.setAdapter(adapter);
